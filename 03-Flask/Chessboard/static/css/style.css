@@ -1,0 +1,21 @@
+
+.board{
+    width: 600px;
+    height: 600px;
+    margin: 0 auto;
+    border: solid;
+    background-color: aqua;
+}
+
+.box{
+    width: 75px;
+    height: 75px;
+    background-color: black;
+}
+.p{
+    font-size: 100 px ;
+    color :red ;
+}
+.flex{
+    display: flex;
+}

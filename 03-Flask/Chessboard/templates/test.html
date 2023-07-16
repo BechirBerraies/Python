@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/test.css') }}">
+</head>
+<body>
+    <h1>YOOO</h1>
+    <div class="board">
+
+{% for i in range(0,number)%}
+    <div class="row1 flex">
+<div class="rows colwhite"></div>
+<div class="rows "></div>
+<div class="rows colwhite"></div>
+<div class="rows "></div>
+<div class="rows colwhite"></div>
+<div class="rows "></div>
+<div class="rows colwhite"></div>
+<div class="rows"></div>
+</div>
+<div class="row2 flex">
+<div class="rows"></div>
+<div class="rows colwhite"></div>
+<div class="rows "></div>
+<div class="rows colwhite"></div>
+<div class="rows "></div>
+<div class="rows colwhite"></div>
+<div class="rows "></div>
+<div class="rows colwhite"></div>
+</div>
+{%endfor%}
+</div>
+
+</body>
+</html>
