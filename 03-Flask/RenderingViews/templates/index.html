@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">
+</head>
+<body>
+        <div class="boxes">
+    <div class="title flex"><h1>Welcome : {{num}}</h1></div>
+    <div class="theboxes flex">
+    {%for i in range(0,num)%}
+    <div class="box flex" style="background-color: {{color}}"></div>
+    {% endfor %}
+</div>
+</div>
+
+
+</body>
+</html>

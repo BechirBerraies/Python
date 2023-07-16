@@ -1,0 +1,21 @@
+
+.boxes{
+    width: 700px;
+    height: 400px;
+    background-color: bisque;
+    margin: 0 auto;
+}
+
+.box{
+    height: 100px;
+    width: 100px;
+    background-color: red;
+    margin-left: 20px;
+}
+
+
+.flex{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
