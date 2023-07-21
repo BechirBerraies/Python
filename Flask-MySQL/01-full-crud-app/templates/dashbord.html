@@ -19,9 +19,22 @@
                 </tr>
             </thead>
             <tbody>
-                <tr></tr>
+                {% for artist in artists %}
+                <tr>
+                    <td>{{artist.id}}</td>
+                    <td>{{artist.first_name}}</td>
+                    <td>{{artist.last_name}}</td>
+                    <td>{{artist.nationality}}</td>
+                    <td>
+                        <a href="" class="btn btn-info ">View</a>
+                        <a href="" class="btn btn-info ">Edit</a>
+                        <a href="" class="btn btn-info ">Delete</a>
+                    </td>
+                </tr>
+                {%endfor%}
             </tbody>
         </table>
+        <a href="/artists/new"class="btn btn-primary ">Add New Artist</a>
     </div>
     
 </body>
