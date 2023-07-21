@@ -1,0 +1,13 @@
+INSERT INTO dojos (name) values ('DojoAriana'),('DojoTexas'),('DojoBizerte');
+DELETE FROM dojos WHERE id in (1,2,3);
+INSERT INTO dojos (name) values ('Dojosweeden'),('Dojomourouj'),('Dojoselyena');
+INSERT INTO ninjas (first_name,last_name,age,dojo_id) values ('3imed','mecanique',27, (SELECT id FROM dojos ORDER BY id LIMIT 1) ),('Selim','electricien',45,(SELECT id FROM dojos ORDER BY id LIMIT 1)),('bechir','developpeur',23,(SELECT id FROM dojos ORDER BY id LIMIT 1));
+SELECT * FROM dojos;
+SELECT * FROM ninjas;
+INSERT INTO ninjas (first_name,last_name,age,dojo_id) values ('3imed','mecanique',27, (SELECT id FROM dojos ORDER BY id LIMIT 1) ),('Selim','electricien',45,(SELECT id FROM dojos ORDER BY id LIMIT 1)),('bechir','developpeur',23,(SELECT id FROM dojos ORDER BY id LIMIT 1));
+INSERT INTO ninjas (first_name,last_name,age,dojo_id) values ('Mahmoud','theBest',35,5),('Naruto','Uzumaki',17,5),('sasuke','utchiha',23,5);
+INSERT INTO ninjas (first_name,last_name,age,dojo_id) values ('3imed','theBest',35,6),('khalil','Uzumaki',17,6),('khaled','utchiha',23,6);
+SELECT * FROM ninjas WHERE dojo_id = 4 ;
+SELECT * FROM ninjas WHERE dojo_id = 6;
+SELECT  * FROM dojo WHERE dojo_id =6;
+select * from ninjas join dojos on ninjas.dojo_id= dojos.id order by ninjas.id desc limit 1;
