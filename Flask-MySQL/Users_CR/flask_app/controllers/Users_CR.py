@@ -1,6 +1,6 @@
-from mysqlconnection import connectToMySQL
+from flask_app.config.mysqlconnection import connectToMySQL
 
-class user : 
+class User : 
     def __init__(self, data):
         self.first_name = data['first_name']
         self.last_name = data['last_name']
@@ -26,3 +26,12 @@ class user :
         """
         result = connectToMySQL("UserCR_schema").query_db(query, data)
         return None
+
+    @classmethod
+    def read_one(cls,data):
+        query = """
+        SELECT *  FROM users WHERE id = %(id)s ; 
+        """
+        
+        result = connectToMySQL("UserCR_schema").query_db(query,data)
+        return cls(result[0])

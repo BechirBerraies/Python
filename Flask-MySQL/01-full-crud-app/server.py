@@ -35,6 +35,30 @@ def create_artist():
 
     return redirect('/')
 
+@app.route('/artists/<int:artist_id>')
+def viewartist(artist_id):
+    data_dict = {'id':artist_id}
+    artist = Artist.get_one_by_id(data_dict)
+
+    return render_template('show_artist.html', artist = artist )
+
+
+
+@app.route('/artists/<int:artist_id>/edit')
+def edit(artist_id):
+    return render_template('edit.artist.html')
+
+
+
+@app.route('/artists/<int:artist_id>/delete')
+def delete(artist_id):
+    data_dict = {'id': artist_id}
+    artist = Artist.delete(data_dict)
+    return redirect('/')
+
+
+
+    
 
 
 if __name__ == '__main__':

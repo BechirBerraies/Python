@@ -26,9 +26,9 @@
                     <td>{{artist.last_name}}</td>
                     <td>{{artist.nationality}}</td>
                     <td>
-                        <a href="" class="btn btn-info ">View</a>
-                        <a href="" class="btn btn-info ">Edit</a>
-                        <a href="" class="btn btn-info ">Delete</a>
+                        <a href="/artists/{{artist.id}}" class="btn btn-info ">View</a>
+                        <a href="/artists/{{artist.id}}/edit" class="btn btn-info ">Edit</a>
+                        <a href="/artists/{{artist.id}}/delete" class="btn btn-info ">Delete</a>
                     </td>
                 </tr>
                 {%endfor%}

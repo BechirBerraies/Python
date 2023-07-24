@@ -37,3 +37,23 @@ class Artist :
         # print(result)
         return None
         
+    @classmethod 
+    def get_one_by_id(cls,data_dict):
+        query ="""
+            SELECT * FROM artists WHERE id = %(id)s;
+"""
+        results = connectToMySQL("artists_schema").query_db(query, data_dict)
+        artist = cls(results[0])
+        print(results, "ballon"*20)
+
+        return artist
+    
+    @classmethod
+    def delete(cls,data_dict):
+        query ="""
+            DELETE FROM artists WHERE id = %(id)s;
+"""
+        result = connectToMySQL("artists_schema").query_db(query, data_dict)
+        print(result)
+        artist = cls(result[0])
+        return artist
