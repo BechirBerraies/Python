@@ -30,5 +30,15 @@ class Dojo :
         query = """
         INSERT INTO dojos (name) VALUES (%(name)s);
 """
-        result = connectToMySQL(DATABASE).query_db(query,data_dict  )
+        result = connectToMySQL(DATABASE).query_db(query,data_dict)
+        return result
+    
+    @classmethod
+    def get_one_by_id(query , data_dict):
+        query = """
+        SELECT * FROM dojos 
+        LEFT JOIN ninjas ON dojos.id  = ninjas.dojo_id 
+        WHERE dojos.id = %(id)s ;
+"""
+        result = connectToMySQL(DATABASE).query_db(query, data_dict)
         return result

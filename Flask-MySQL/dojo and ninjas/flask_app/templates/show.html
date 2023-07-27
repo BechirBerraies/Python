@@ -19,13 +19,16 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-        </tr>
-        </tbody>
+        {% for ninjas in showdojo %}
+            <tr>
+                <td>{{ninjas.first_name}}</td>
+                <td>{{ninjas.last_name}}</td>
+                <td>{{ninjas.age}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
     </table>
+    <a href="/">home</a>
 </div>
 </body>
 </html>
