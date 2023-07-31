@@ -42,3 +42,5 @@ class Dojo :
 """
         result = connectToMySQL(DATABASE).query_db(query, data_dict)
         return result
+    
+
