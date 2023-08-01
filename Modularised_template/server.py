@@ -1,7 +1,7 @@
 from flask_app import app
 
 # ! Import ALL CONTROLLERS HERE 🚫⛔
-# from flask_app.controllers import 
+from flask_app.controllers import users
 
 
 if __name__ == '__main__':
