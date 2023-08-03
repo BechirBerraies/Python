@@ -9,7 +9,7 @@
 <body>
     <div class="container d-flex justify-content-evenly  ">
         <div class="left row-6 w-25  p-5 bg-secondary   ">
-            <form method= "post" action="/create">
+            <form method= "post" action="/users/create">
               <h1>Register</h1>
               {%for message in get_flashed_messages()%}
                     <span class="text-danger ">{{message}}</span>
@@ -28,27 +28,32 @@
                 </div>
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="password">
+                  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="password">
                 </div>
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">Confirm Password</label>
-                  <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="confirm_password">
                 </div>
                 <button class="btn btn-success">Login</button>
-              </form>
+              </form >
         </div>
         <div class="right row-6 w-25 p-5  bg-secondary ">
-          <form>
-            <h1>Login</h1>
+          <h1>Login</h1>
+          {% for message in get_flashed_messages(category_filter=["login"]) %}
+          <span class="text-danger">{{message}}</span>
+      {% endfor %}
+          <form action="/login" method="post">
+            
+            
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Email address</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <input type="email" class="form-control" name="email">
             </div>
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1">
+              <input type="password" class="form-control" name="password">
             </div>
-            <button type="button" class="btn btn-success">Login</button>
+            <input type="submit" value="Log In" class="btn btn-secondary btn-lg w-100">
           </form>
         </div>
     </div>

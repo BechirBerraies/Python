@@ -24,7 +24,7 @@ const expected4 = "a";
 function stringDedupe(str) {
     keep = ""
     for (i= 0 ; i < str.length ; i++){
-        if(str[i] != str.){
+        if(str[i] != str.){ 
             keep += str[i]
         }
 
