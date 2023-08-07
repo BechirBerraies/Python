@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome {{logged.first_name}} {{recipe.poster}} </h1>
+    <h1>Posted By : 
+        {%if logged.first_name == recipe.poster %}
+        You
+        {%else%}
+        {{recipe.poster}}
+        {%endif%}
+    </h1>
+    <div class="card">
+        <h4>Description : {{recipe.description}} </h4>
+        <h4>Under 30 minutes : 
+            {% if recipe.Under_30 == 1%}
+                      True    
+                  {%else%}
+                      False
+                  {%endif%}
+        </h4>
+        <h4>Instructions : {{recipe.Instructions}}</h4>
+        <h4>Date Made : {{recipe.Date_made}}</h4>
+    </div>
+
+    <a href="/recipes">GO back</a>
+</body>
+</html>
