@@ -1,26 +1,17 @@
 from flask_app import app
 from flask import render_template , request, redirect,session, flash
 from flask_app.models.user import User 
-from flask_app.models.book import Book 
 
 
 from flask_bcrypt import Bcrypt        
 bcrypt = Bcrypt(app)
 
+
+
+
 @app.route('/')
-def register():
+def index():
     return render_template("login.html")
-
-
-@app.route('/dashbord')
-def dashbord():
-    if 'user_id' not in session:
-        return redirect('/')
-    logged_user = User.get_by_id({'id':session['user_id']})
-    all_books = Book.get_all()
-    return render_template("dashbord.html", logged_user =logged_user, all_books = all_books)
-
-
 
 @app.route('/users/create', methods = ['POST'])
 def create_user():

@@ -10,25 +10,28 @@ import re
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$') 
 PASSWORD_REGEX = re.compile('\d.*[A-Z]|[A-Z].*\d')
 
-
-
-class User:
-    def __init__(self,data_dict):
+class User :
+    def __init__(self, data_dict):
         self.id = data_dict['id']
-        self.name = data_dict['name']
+        self.first_name = data_dict['first_name']
+        self.last_name = data_dict['last_name']
         self.email = data_dict['email']
         self.password = data_dict['password']
-        self.created_at= data_dict['created_at']
-        self.updated_at = data_dict['updated_at']
-
-
+        self.joined_trips = []
+    
     @classmethod 
     def create(cls , data_dict):
         query = """
-            INSERT INTO users (name,email,password) VALUES (%(name)s,%(email)s,%(password)s);
+            INSERT INTO users (first_name,last_name,email,password) VALUES (%(first_name)s,%(last_name)s,%(email)s,%(password)s);
             """
+        # print (MySQLConnection(DATABASE).query_db(query,data_dict))
         return MySQLConnection(DATABASE).query_db(query,data_dict)
 
+    @classmethod
+    def add_joined_trips(cls,data_dict):
+        query = "INSERT INTO joined (user_id,trip_id) VALUES (%(user_id)s,%(trip_id)s);"
+        return MySQLConnection(DATABASE).query_db(query,data_dict)
+    
     @classmethod
     def get_by_email(cls,data_dict):
         query ="""
@@ -47,12 +50,40 @@ class User:
         result = MySQLConnection(DATABASE).query_db(query, data_dict)
         return cls(result[0])
     
+    @classmethod
+    def get_by_id(cls,data):
+        query = "SELECT * FROM users LEFT JOIN joined ON users.id = joined.user_id LEFT JOIN trips ON trips.id = joined.trip_id WHERE users.id = %(id)s;"
+        results = MySQLConnection(DATABASE).query_db(query,data)
+
+        # Creates instance of author object from row one
+        author = cls(results[0])
+        # append all book objects to the instances favorites list.
+        for row in results:
+            # if there are no favorites
+            if row['trips.id'] == None:
+                break
+            # common column names come back with specific tables attached
+            data = {
+                "id": row['books.id'],
+                "title": row['title'],
+                "num_of_pages": row['num_of_pages'],
+                "created_at": row['books.created_at'],
+                "updated_at": row['books.updated_at']
+            }
+            author.favorite_books.append(book.Book(data))
+        return author
+
+    
     @staticmethod
     def validate_register(data_dict):
         is_valid = True
-        if len(data_dict['name'])< 2:
-            print(" Name too short .....")
-            flash(" Name too short .....", "register")
+        if len(data_dict['first_name'])< 2:
+            print("First Name too short .....")
+            flash("First Name too short .....", "register")
+            is_valid = False
+        if len(data_dict['last_name'])< 2:
+            print("First Name too short .....")
+            flash("First Name too short .....", "register")
             is_valid = False
         if not EMAIL_REGEX.match(data_dict['email']): 
             flash("Invalid email address!")
@@ -71,5 +102,6 @@ class User:
             print("Password and Confirm password Don't match !!!!!")
             flash("Password and Confirm password Don't match !!!!!", "register")
             is_valid = False
-
         return is_valid
+    
+

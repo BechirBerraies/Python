@@ -47,13 +47,9 @@ class User :
     @staticmethod
     def validate_register(data_dict):
         is_valid = True
-        if len(data_dict['first_name'])< 2:
+        if len(data_dict['name'])< 2:
             print("First Name too short .....")
             flash("First Name too short .....", "register")
-            is_valid = False
-        if len(data_dict['last_name'])< 2:
-            print("Last Name too short .....")
-            flash("Last Name too short .....", "register")
             is_valid = False
         if not EMAIL_REGEX.match(data_dict['email']): 
             flash("Invalid email address!")
@@ -72,7 +68,6 @@ class User :
             print("Password and Confirm password Don't match !!!!!")
             flash("Password and Confirm password Don't match !!!!!", "register")
             is_valid = False
-
         return is_valid
     
 

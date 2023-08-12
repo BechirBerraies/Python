@@ -11,7 +11,7 @@ def dashbord():
     if 'user_id' not in session:
         return redirect('/')
     logged_user = User.get_by_id({'id':session['user_id']})
-    all_recipes = Recipe.get_all()
+    all_recipes = Recipe.get_all({'id':session['user_id']})
     return render_template("recipes.html",user = logged_user, all_recipes = all_recipes)
 
 @app.route('/recipes/create', methods= ['POST'])
@@ -64,10 +64,10 @@ def delete(id):
     Recipe.delete_recipe({'id':id})
     return redirect('/recipes')
 
-@app.route('/recipe/<int:id>')
+@app.route('/trip/<int:id>')
 def view_recipe(id):
     if 'user_id' not in session:
         return redirect('/')
-    recipe = Recipe.get_by_id({'id':id})
+    trip = Recipe.get_by_id({'id':id})
     logged = User.get_by_id({'id':session['user_id']})
-    return render_template("view.html", recipe = recipe , logged =logged)
+    return render_template("view.html", trip = trip , logged =logged)

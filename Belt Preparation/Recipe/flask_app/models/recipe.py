@@ -66,6 +66,8 @@ class Recipe:
         result = MySQLConnection(DATABASE).query_db(query, data_dict)
         return result
     
+    
+    
     @staticmethod
     def validate_recipe(data_dict):
         is_valid = True

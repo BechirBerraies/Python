@@ -10,23 +10,20 @@ import re
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$') 
 PASSWORD_REGEX = re.compile('\d.*[A-Z]|[A-Z].*\d')
 
-
-
-class User:
-    def __init__(self,data_dict):
+class User :
+    def __init__(self, data_dict):
         self.id = data_dict['id']
-        self.name = data_dict['name']
+        self.first_name = data_dict['first_name']
+        self.last_name = data_dict['last_name']
         self.email = data_dict['email']
         self.password = data_dict['password']
-        self.created_at= data_dict['created_at']
-        self.updated_at = data_dict['updated_at']
-
-
+    
     @classmethod 
     def create(cls , data_dict):
         query = """
-            INSERT INTO users (name,email,password) VALUES (%(name)s,%(email)s,%(password)s);
+            INSERT INTO users (first_name,last_name,email,password) VALUES (%(first_name)s,%(last_name)s,%(email)s,%(password)s);
             """
+        # print (MySQLConnection(DATABASE).query_db(query,data_dict))
         return MySQLConnection(DATABASE).query_db(query,data_dict)
 
     @classmethod
@@ -50,9 +47,13 @@ class User:
     @staticmethod
     def validate_register(data_dict):
         is_valid = True
-        if len(data_dict['name'])< 2:
-            print(" Name too short .....")
-            flash(" Name too short .....", "register")
+        if len(data_dict['first_name'])< 2:
+            print("First Name too short .....")
+            flash("First Name too short .....", "register")
+            is_valid = False
+        if len(data_dict['last_name'])< 2:
+            print("First Name too short .....")
+            flash("First Name too short .....", "register")
             is_valid = False
         if not EMAIL_REGEX.match(data_dict['email']): 
             flash("Invalid email address!")
@@ -71,5 +72,6 @@ class User:
             print("Password and Confirm password Don't match !!!!!")
             flash("Password and Confirm password Don't match !!!!!", "register")
             is_valid = False
-
         return is_valid
+    
+

@@ -21,13 +21,14 @@ class Book:
         query = """
             INSERT INTO books (user_id,title,author,thoughts) VALUES (%(user_id)s,%(title)s,%(author)s,%(thoughts)s);
             """
+        print(query)
         return MySQLConnection(DATABASE).query_db(query,data_dict)
     
     @classmethod
     def get_all(cls):
         query="""
         SELECT * FROM books
-        JOIN users on recipes.user_id = users.id;
+        JOIN users on books.user_id = users.id;
 """ 
         result = MySQLConnection(DATABASE).query_db(query)
         books = []
